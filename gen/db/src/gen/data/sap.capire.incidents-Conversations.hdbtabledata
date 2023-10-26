@@ -1,0 +1,33 @@
+{
+  "format_version": 1,
+  "imports": [
+    {
+      "target_table": "SAP_CAPIRE_INCIDENTS_CONVERSATIONS",
+      "source_data": {
+        "data_type": "CSV",
+        "file_name": "sap.capire.incidents-Conversations.csv",
+        "has_header": true,
+        "type_config": {
+          "delimiter": ","
+        }
+      },
+      "import_settings": {
+        "import_columns": [
+          "ID",
+          "INCIDENTS_ID",
+          "TIMESTAMP",
+          "AUTHOR",
+          "MESSAGE"
+        ],
+        "include_filter": []
+      },
+      "column_mappings": {
+        "ID": "ID",
+        "INCIDENTS_ID": "incidents_ID",
+        "TIMESTAMP": "timestamp",
+        "AUTHOR": "author",
+        "MESSAGE": "message"
+      }
+    }
+  ]
+}

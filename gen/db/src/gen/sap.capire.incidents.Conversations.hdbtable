@@ -1,0 +1,14 @@
+COLUMN TABLE sap_capire_incidents_Conversations (
+  ID NVARCHAR(36) NOT NULL,
+  createdAt TIMESTAMP,
+  createdBy NVARCHAR(255),
+  modifiedAt TIMESTAMP,
+  modifiedBy NVARCHAR(255),
+  incidents_ID NVARCHAR(36),
+  "TIMESTAMP" SECONDDATE,
+  author NVARCHAR(5000),
+  message NVARCHAR(5000),
+  PRIMARY KEY(ID)
+) WITH ASSOCIATIONS (
+  MANY TO ONE JOIN sap_capire_incidents_Incidents AS incidents ON (incidents.ID = incidents_ID)
+)

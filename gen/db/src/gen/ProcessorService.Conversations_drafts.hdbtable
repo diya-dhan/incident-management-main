@@ -1,0 +1,19 @@
+COLUMN TABLE ProcessorService_Conversations_drafts (
+  ID NVARCHAR(36) NOT NULL,
+  createdAt TIMESTAMP NULL,
+  createdBy NVARCHAR(255) NULL,
+  modifiedAt TIMESTAMP NULL,
+  modifiedBy NVARCHAR(255) NULL,
+  incidents_ID NVARCHAR(36) NULL,
+  "TIMESTAMP" SECONDDATE NULL,
+  author NVARCHAR(5000) NULL,
+  message NVARCHAR(5000) NULL,
+  IsActiveEntity BOOLEAN,
+  HasActiveEntity BOOLEAN,
+  HasDraftEntity BOOLEAN,
+  DraftAdministrativeData_DraftUUID NVARCHAR(36) NOT NULL,
+  PRIMARY KEY(ID)
+) WITH ASSOCIATIONS (
+  MANY TO ONE JOIN ProcessorService_Incidents_drafts AS incidents ON (incidents.ID = incidents_ID),
+  MANY TO ONE JOIN ProcessorService_DraftAdministrativeData AS DraftAdministrativeData ON (DraftAdministrativeData.DraftUUID = DraftAdministrativeData_DraftUUID)
+)

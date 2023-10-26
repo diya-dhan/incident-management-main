@@ -1,0 +1,14 @@
+VIEW ProcessorService_Conversations AS SELECT
+  Conversations_0.ID,
+  Conversations_0.createdAt,
+  Conversations_0.createdBy,
+  Conversations_0.modifiedAt,
+  Conversations_0.modifiedBy,
+  Conversations_0.incidents_ID,
+  Conversations_0."TIMESTAMP",
+  Conversations_0.author,
+  Conversations_0.message
+FROM sap_capire_incidents_Conversations AS Conversations_0
+WITH ASSOCIATIONS (
+  MANY TO ONE JOIN ProcessorService_Incidents AS incidents ON (incidents.ID = incidents_ID)
+)
