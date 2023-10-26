@@ -5,48 +5,48 @@ service:
 buildToolVersion: "N18"
 stages:
 Build:
-    npmExecuteLint: true
+  npmExecuteLint: true
 Additional Unit Tests:
-    npmExecuteScripts: true
+  npmExecuteScripts: true
 Acceptance:
-    kubernetesDeploy: false
+  kubernetesDeploy: false
 Compliance:
-    sonarExecuteScan: false
+  sonarExecuteScan: false
 Release:
-    kubernetesDeploy: true
-    deploymentName: incidents-mgmt
-    kubeConfigFileCredentialsId: kube-config
-    namespace: incidents-namespace-cicd
-    additionalParameters:
-    - --set-file
-    - xsuaa.jsonParameters=xs-security.json
+  kubernetesDeploy: true
+  deploymentName: incidents-mgmt
+  kubeConfigFileCredentialsId: kube-config
+  namespace: incidents-namespace-cicd
+  additionalParameters:
+  - --set-file
+  - xsuaa.jsonParameters=xs-security.json
 steps:
-npmExecuteLint:
+  npmExecuteLint:
     failOnError: true
-npmExecuteScripts:
+  npmExecuteScripts:
     runScripts:
     - "test"
-buildExecute:
+  buildExecute:
     npmRunScripts: [ 'cds-build' ]
     npmInstall: false
     cnbBuild: true
     helmExecute: true
-cnbBuild:
+  cnbBuild:
     containerRegistryUrl: 'https://index.docker.io'
     dockerConfigJsonCredentialsId: docker-config
     multipleImages:
-    - path: gen/srv
+      - path: gen/srv
         containerImageName: diyadhansap/incidents-mgmt-srv
         containerImageAlias: diyadhansap/incidents-mgmt-srv
         containerImageTag: latest
-    - path: gen/db
+      - path: gen/db
         containerImageName: diyadhansap/incidents-mgmt-hana-deployer
         containerImageAlias: diyadhansap/incidents-mgmt-hana-deployer
         containerImageTag: latest
-    - path: app/incidents
+      - path: app/incidents
         containerImageName: diyadhansap/incidents-mgmt-html5-deployer
         containerImageAlias: diyadhansap/incidents-mgmt-html5-deployer
         containerImageTag: latest
-helmExecute:
+  helmExecute:
     helmCommand: dependency
     dependency: update
