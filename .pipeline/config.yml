@@ -4,22 +4,22 @@ chartPath: chart
 service:
 buildToolVersion: "N18"
 stages:
-Build:
-  npmExecuteLint: true
-Additional Unit Tests:
-  npmExecuteScripts: true
-Acceptance:
-  kubernetesDeploy: false
-Compliance:
-  sonarExecuteScan: false
-Release:
-  kubernetesDeploy: true
-  deploymentName: incidents-mgmt
-  kubeConfigFileCredentialsId: kube-config
-  namespace: incidents-namespace-cicd
-  additionalParameters:
-  - --set-file
-  - xsuaa.jsonParameters=xs-security.json
+  Build:
+    npmExecuteLint: true
+  Additional Unit Tests:
+    npmExecuteScripts: true
+  Acceptance:
+    kubernetesDeploy: false
+  Compliance:
+    sonarExecuteScan: false
+  Release:
+    kubernetesDeploy: true
+    deploymentName: incidents-mgmt
+    kubeConfigFileCredentialsId: kube-config
+    namespace: incidents-namespace-cicd
+    additionalParameters:
+    - --set-file
+    - xsuaa.jsonParameters=xs-security.json
 steps:
   npmExecuteLint:
     failOnError: true
