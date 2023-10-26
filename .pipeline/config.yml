@@ -1,8 +1,8 @@
 general:
-buildTool: "npm"
-chartPath: chart
+  buildTool: "npm"
+  chartPath: chart
 service:
-buildToolVersion: "N18"
+  buildToolVersion: "N18"
 stages:
   Build:
     npmExecuteLint: true
