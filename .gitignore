@@ -1,0 +1,5 @@
+mta.yaml
+gen/
+package-lock.json
+/app/incidents/package-lock.json
+node_modules/
