@@ -23,7 +23,6 @@ stages:
 steps:
   npmExecuteLint:
     failOnError: true
-  npmExecuteScripts: false
   buildExecute:
     npmRunScripts: [ 'cds-build' ]
     npmInstall: false
