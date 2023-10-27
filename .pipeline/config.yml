@@ -7,7 +7,7 @@ stages:
   Build:
     npmExecuteLint: true
   Additional Unit Tests:
-    npmExecuteScripts: false
+    npmExecuteScripts: true
   Acceptance:
     kubernetesDeploy: false
   Compliance:
@@ -23,6 +23,9 @@ stages:
 steps:
   npmExecuteLint:
     failOnError: true
+  npmExecuteScripts:
+    runScripts:
+    - "test"
   buildExecute:
     npmRunScripts: [ 'cds-build' ]
     npmInstall: false
