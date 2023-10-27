@@ -36,16 +36,16 @@ steps:
     dockerConfigJsonCredentialsId: docker-config
     multipleImages:
       - path: gen/srv
-        containerImageName: diyadhansap/incident-mgmt-srv
-        containerImageAlias: diyadhansap/incident-mgmt-srv
+        containerImageName: diyadhansap/incident-management-srv
+        containerImageAlias: diyadhansap/incident-management-srv
         containerImageTag: latest
       - path: gen/db
-        containerImageName: diyadhansap/incident-mgmt-hana-deployer
-        containerImageAlias: diyadhansap/incident-mgmt-hana-deployer
+        containerImageName: diyadhansap/incident-management-hana-deployer
+        containerImageAlias: diyadhansap/incident-management-hana-deployer
         containerImageTag: latest
       - path: app/incidents
-        containerImageName: diyadhansap/incident-mgmt-html5-deployer
-        containerImageAlias: diyadhansap/incident-mgmt-html5-deployer
+        containerImageName: diyadhansap/incident-management-html5-deployer
+        containerImageAlias: diyadhansap/incident-management-html5-deployer
         containerImageTag: latest
   helmExecute:
     helmCommand: dependency
