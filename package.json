@@ -6,14 +6,16 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
+    "@sap/ams": "^1.13.1",
     "@sap/cds": "^7",
-    "express": "^4",
     "@sap/cds-hana": "^2",
     "@sap/xssec": "^3",
+    "express": "^4",
     "passport": "^0"
   },
   "devDependencies": {
     "@cap-js/sqlite": "^1.0.1",
+    "@sap/ams-dev": "^0.7.1",
     "@sap/cds-dk": "^7",
     "@sap/ux-specification": "^1.108.16",
     "axios": "^1.5.1",
@@ -35,30 +37,27 @@
         "auth": {
           "kind": "mocked",
           "users": {
-            "incident.support@tester.sap.com": {
-              "password": "initial",
-              "roles": [
-                "support"
-              ]
-            },
+            "bob": {},
             "alice": {
-              "roles": [
-                "support"
+              "policies": [
+                "cap.support (Not restricted)"
               ]
             },
-            "bob": {
-              "roles": [
-                "support"
-              ]
+            "ams": {
+              "autoCompile": true,
+              "cache": {
+                "TTL": 0
+              }
             }
           }
         }
       },
       "[production]": {
         "db": "hana",
-        "auth": "xsuaa"
+        "auth": "ias"
       },
-      "destinations": true
+      "destinations": true,
+      "middlewares": true
     }
   },
   "sapux": [

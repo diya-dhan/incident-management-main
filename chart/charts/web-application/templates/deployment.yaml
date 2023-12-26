@@ -100,6 +100,16 @@ spec:
           readOnlyRootFilesystem: {{ .Values.readOnlyRootFilesystem | default false }}
           seccompProfile:
             type: RuntimeDefault
+      - name: ams-sidecar
+        image: cloud-security-integration.common.repositories.cloud.sap/ams-k8s-sidecar:0.53.1-sap-0.3.3
+        ports:
+          - name: sidecar
+            containerPort: 8181
+            protocol: TCP
+        volumeMounts:
+          - name: identity
+            mountPath: "/etc/secrets/sapbtp/identity/ias-secret"
+            readOnly: true
       restartPolicy: Always
       terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
       securityContext:

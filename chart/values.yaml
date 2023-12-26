@@ -5,10 +5,12 @@ srv:
   bindings:
     db:
       serviceInstanceName: hana
-    auth:
-      serviceInstanceName: xsuaa
     destination:
       serviceInstanceName: destination
+    identity:
+      serviceInstanceName: identity-service
+      parameters:
+        credential-type: X509_GENERATED
   image:
     repository: diyadhansap/incident-management-srv
     tag: latest
@@ -42,12 +44,12 @@ hana-deployer:
 hana:
   serviceOfferingName: hana
   servicePlanName: hdi-shared
-xsuaa:
-  serviceOfferingName: xsuaa
+identity-service:
+  serviceOfferingName: identity
   servicePlanName: application
   parameters:
-    xsappname: n-incident-management
-    tenant-mode: dedicated
+    authorization:
+      enabled: true
 html5-apps-repo-host:
   serviceOfferingName: html5-apps-repo
   servicePlanName: app-host

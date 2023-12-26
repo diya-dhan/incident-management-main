@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Job
+metadata:
+  name: dcl-upload-job
+spec:
+  ttlSecondsAfterFinished: 150
+  template:
+    spec:
+      imagePullSecrets: cmVmdGtuOjAxOjE3MzQ2OTU2NTA6YXEzREVmTjE5OHNlRzBRTFhMMW9OMlNBTlBs
+      initContainers:
+        - name: copy-dcl-files
+          image: {{ include "web-application.internal.imageName" . }}
+          command: [ 'sh', '-c', 'cp -R /Users/I584814/Diya/incident-management-main/gen/srv/ams/dcl/* /dcl-files' ]
+          volumeMounts:
+            - name: dcl-files
+              mountPath: "/dcl-files"
+          env:
+          - name: AMS_LOG_LEVEL
+            value: debug
+      containers:
+        - name: upload-container
+          image: cloud-security-integration.common.repositories.cloud.sap/dcl-uploader:0.0.2
+          volumeMounts:
+            - name: dcl-files
+              mountPath: /dcl-files
+            - name: identity
+              readOnly: true
+              mountPath: /bindings/identity/
+          env:
+            - name: AMS_LOG_LEVEL
+              value: debug
+      volumes:
+        - name: dcl-files
+          emptyDir: {}
+        {{- include "web-application.internal.serviceVolumes" . | nindent 8 }}
+      restartPolicy: OnFailure

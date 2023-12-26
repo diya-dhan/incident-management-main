@@ -8,7 +8,6 @@ metadata:
   labels: {{- include "content-deployment.internal.labels" $ | nindent 4 }}
 spec:
   serviceInstanceName: {{include "content-deployment.internal.serviceInstanceName" (dict "binding" $params "root" $) }}
-  secretKey: credentials
   {{- if $params.externalName }}
   externalName: {{ $params.externalName }}
   {{- end }}

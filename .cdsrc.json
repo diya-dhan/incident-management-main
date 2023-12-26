@@ -1,0 +1,41 @@
+{
+    "requires": {
+        "auth": {
+            "[development]": {
+                "kind": "mocked",
+                "users": {
+                    "bob": {
+                    },
+                    "alice": {
+                        "policies" : [
+                            "cap.support (Not restricted)"
+                        ]
+                    }
+                },
+                "ams": {
+                    "autoCompile": true,
+                    "cache": {
+                        "TTL": 0
+                    }
+                }
+            },
+            "[production]": {
+                "kind": "ias"
+            }
+        },
+        "db": {
+            "[development]": {
+                "kind": "sqlite",
+                "credentials": {
+                    "url": ":memory:"
+                }
+            },
+            "[production]": {
+                "db": {
+                    "kind": "hana"
+                }
+            }
+        },
+        "middlewares": true
+    }
+}
